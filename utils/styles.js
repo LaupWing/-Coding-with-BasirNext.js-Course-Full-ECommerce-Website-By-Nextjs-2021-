@@ -20,6 +20,10 @@ const useStyles = makeStyles({
    },
    grow:{
       flexGrow: 1
+   },
+   section:{
+      marginTop: 10,
+      marginBottom: 10
    }
 })
 
