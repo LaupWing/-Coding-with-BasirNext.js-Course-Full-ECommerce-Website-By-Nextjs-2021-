@@ -1,6 +1,7 @@
 import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, Typography } from '@material-ui/core'
 import Head from 'next/head'
 import Image from 'next/image'
+import NextLink from 'next/link'
 import Layout from '../components/Layout'
 import data from '../utils/data'
 
@@ -17,20 +18,22 @@ export default function Home() {
                      key={product.name}
                   >
                      <Card>
-                        <CardActionArea>
-                           <CardMedia 
-                              component="img"
-                              image={product.image}
-                              title={product.name}
-                           >
+                        <NextLink href={`/products/${product.slug}`} passHref>
+                           <CardActionArea>
+                              <CardMedia 
+                                 component="img"
+                                 image={product.image}
+                                 title={product.name}
+                              >
 
-                           </CardMedia>
-                           <CardContent>
-                              <Typography>
-                                 {product.name}
-                              </Typography>
-                           </CardContent>
-                        </CardActionArea>
+                              </CardMedia>
+                              <CardContent>
+                                 <Typography>
+                                    {product.name}
+                                 </Typography>
+                              </CardContent>
+                           </CardActionArea>
+                        </NextLink>
                         <CardActions>
                            <Typography>
                               ${product.price}
