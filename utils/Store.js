@@ -8,7 +8,6 @@ const initialState = {
 }
 
 function reducer(state, action){
-   console.log(state)
    switch(action.type){
       case 'DARK_MODE_ON':
          return {

@@ -9,7 +9,6 @@ import useStyles from '../utils/styles';
 const Layout = ({children, title, description}) => {
    const {state, dispatch} = useContext(Store)
    const {darkMode} = state
-
    const classes = useStyles()
    const theme = createTheme({
       typography:{
