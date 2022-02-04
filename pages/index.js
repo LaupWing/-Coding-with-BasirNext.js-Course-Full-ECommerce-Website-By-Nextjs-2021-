@@ -1,9 +1,9 @@
 import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, Typography } from '@material-ui/core'
-import Head from 'next/head'
-import Image from 'next/image'
 import NextLink from 'next/link'
 import Layout from '../components/Layout'
+import Product from '../models/Product'
 import data from '../utils/data'
+import db from '../utils/db'
 
 export default function Home() {
    return (
@@ -49,4 +49,17 @@ export default function Home() {
          </div>
       </Layout>
    )
+}
+
+
+export async function getServerSideProps(){
+   await db.connect()
+   const products = await Product.find({})
+   await db.disconnect()
+
+   return {
+      props:{
+         products
+      }
+   }
 }
