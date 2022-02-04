@@ -17,9 +17,9 @@ async function connect(){
    }
 
    const db = await mongoose.connect(process.env.MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true
+      // useNewUrlParser: true,
+      // useUnifiedTopology: true,
+      // useCreateIndex: true
    })
    console.log('New connection')
    connection.isConnected = db.connections[0].readyState
