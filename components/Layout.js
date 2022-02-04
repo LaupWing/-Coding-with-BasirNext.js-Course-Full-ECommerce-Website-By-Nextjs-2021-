@@ -1,4 +1,4 @@
-import { AppBar, Container, Toolbar, Typography, Link, createTheme, ThemeProvider, CssBaseline, Switch } from '@material-ui/core';
+import { AppBar, Container, Toolbar, Typography, Link, createTheme, ThemeProvider, CssBaseline, Switch, Badge } from '@material-ui/core';
 import Cookies from 'js-cookie';
 import Head from 'next/head';
 import NextLink from 'next/link';
@@ -8,7 +8,7 @@ import useStyles from '../utils/styles';
 
 const Layout = ({children, title, description}) => {
    const {state, dispatch} = useContext(Store)
-   const {darkMode} = state
+   const {darkMode, cart} = state
    const classes = useStyles()
    const theme = createTheme({
       typography:{
@@ -67,7 +67,12 @@ const Layout = ({children, title, description}) => {
 
                      </Switch>
                      <NextLink href={'/cart'} passHref>
-                        <Link>Cart</Link>
+                        <Link>
+                           {cart.cartItems.length > 0 ? <Badge color='secondary' badgeContent={cart.cartItems.length}>
+                              Cart
+                           </Badge>: "Cart"}
+                           
+                        </Link>
                      </NextLink>
                      <NextLink href={'/login'} passHref>
                         <Link>Login</Link>
