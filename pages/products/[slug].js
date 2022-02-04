@@ -11,6 +11,7 @@ import axios from 'axios';
 import { Store } from '../../utils/Store';
 
 const ProductDetail = ({product}) => {
+   const router = useRouter()
    const classes = useStyles()
    const {dispatch} = useContext(Store)
 
@@ -25,6 +26,7 @@ const ProductDetail = ({product}) => {
          return
       }
       dispatch({type: 'CART_ADD_ITEM', payload: {...product, quantity: 1}})
+      router.push('/cart')
    }
 
    return (

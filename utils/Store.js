@@ -23,8 +23,8 @@ function reducer(state, action){
             darkMode: true
          }
       case 'CART_ADD_ITEM':
-         const newItem = actions.payload
-         const exists = state.cart.cartItems.find(item=> item.name === newItem.name)
+         const newItem = action.payload
+         const exists = state.cart.cartItems.find(item=> item._id === newItem._id)
 
          const cartItems = exists ? state.cart.cartItems.map(item=>item.name === exists.name ? newItem : item) : [...state.cart.cartItems, newItem]
          Cookies.set('cartItems', JSON.stringify(cartItems))
