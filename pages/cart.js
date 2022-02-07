@@ -1,4 +1,5 @@
 import { Button, Card, Grid, Link, List, ListItem, MenuItem, Select, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@material-ui/core';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import React, { useContext } from 'react';
@@ -99,4 +100,4 @@ const cart = () => {
    </Layout>)
 };
 
-export default cart;
+export default dynamic(()=> Promise.resolve(cart), {ssr: false});
