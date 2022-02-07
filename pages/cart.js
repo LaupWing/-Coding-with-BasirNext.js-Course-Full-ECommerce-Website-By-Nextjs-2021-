@@ -31,7 +31,7 @@ const cart = () => {
                               {cartItems.map(item=>(
                                  <TableRow key={item.id}>
                                     <TableCell>
-                                       <NextLink passHref href={`/product/${item.slug}`}>
+                                       <NextLink passHref href={`/products/${item.slug}`}>
                                           <Link>
                                              <Image 
                                                 src={item.image} 
@@ -43,7 +43,7 @@ const cart = () => {
                                        </NextLink>
                                     </TableCell>
                                     <TableCell>
-                                       <NextLink passHref href={`/product/${item.slug}`}>
+                                       <NextLink passHref href={`/products/${item.slug}`}>
                                           <Link>
                                              <Typography>
                                                 {item.name}
