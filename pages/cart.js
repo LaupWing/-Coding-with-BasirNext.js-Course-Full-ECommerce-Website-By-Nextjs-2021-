@@ -84,6 +84,11 @@ const cart = () => {
                                  : $ {cartItems.reduce((a, c)=> a + c.quantity * c.price, 0)}
                               </Typography>
                            </ListItem>
+                           <ListItem>
+                              <Button variant='contained' color='primary'>
+                                 Check out
+                              </Button>
+                           </ListItem>
                         </List>
                      </Card>
                   </Grid>
