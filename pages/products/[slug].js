@@ -13,19 +13,21 @@ import { Store } from '../../utils/Store';
 const ProductDetail = ({product}) => {
    const router = useRouter()
    const classes = useStyles()
-   const {dispatch} = useContext(Store)
+   const {state, dispatch} = useContext(Store)
 
    if(!product){
       return <div>Product not found</div>
    }
 
    const addToCartHandler = async () =>{
+      const exists = state.cart.cartItems.find(x=>x._id === product._id)
+      const quantity = exists ? exists.quantity + 1 : 1
       const {data} = await axios.get(`/api/products/${product._id}`)
-      if(data.countInStock <= 0){
+      if(data.countInStock < quantity){
          window.alert('Sorry. Product is out of stock')
          return
       }
-      dispatch({type: 'CART_ADD_ITEM', payload: {...product, quantity: 1}})
+      dispatch({type: 'CART_ADD_ITEM', payload: {...product, quantity}})
       router.push('/cart')
    }
 
