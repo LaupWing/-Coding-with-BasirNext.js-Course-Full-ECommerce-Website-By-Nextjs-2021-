@@ -3,13 +3,15 @@ import axios from 'axios';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import NextLink from 'next/link';
+import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
 import Layout from '../components/Layout';
 import { Store } from '../utils/Store';
 
-const cart = () => {
+const Cart = () => {
    const { state, dispatch } = useContext(Store)
    const { cart:{cartItems} } = state
+   const router = useRouter()
 
    const updateCartHandler = async (item, quantity)=>{
       const {data} = await axios.get(`/api/products/${item._id}`)
@@ -23,6 +25,9 @@ const cart = () => {
 
    const removeItemHandler = async (item)=>{
       dispatch({type: 'CART_REMOVE_ITEM', payload: item})
+   }
+   const checkoutHandler = () =>{
+      router.push('/shipping')
    }
 
 
@@ -107,7 +112,7 @@ const cart = () => {
                               </Typography>
                            </ListItem>
                            <ListItem>
-                              <Button variant='contained' color='primary'>
+                              <Button variant='contained' color='primary' onClick={checkoutHandler}>
                                  Check out
                               </Button>
                            </ListItem>
@@ -121,4 +126,4 @@ const cart = () => {
    </Layout>)
 };
 
-export default dynamic(()=> Promise.resolve(cart), {ssr: false});
+export default dynamic(()=> Promise.resolve(Cart), {ssr: false});
