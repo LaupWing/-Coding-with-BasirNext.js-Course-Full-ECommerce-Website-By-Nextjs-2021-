@@ -3,6 +3,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import { useContext } from "react";
 import { useState } from "react";
 import Layout from "../components/Layout";
@@ -17,9 +18,11 @@ export default function Login() {
    const [password, setPassword] = useState('')
    const {dispatch, state} = useContext(Store)
    const {userInfo} = state
-   if(userInfo){
-      router.push('/')
-   }
+   useEffect(()=>{
+      if(userInfo){
+         router.push('/')
+      }
+   },[])
 
    const submitHandler = async e =>{
       e.preventDefault()

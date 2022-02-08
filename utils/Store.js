@@ -53,6 +53,15 @@ function reducer(state, action){
             userInfo: action.payload
          }
       }
+      case 'USER_LOGOUT': {
+         return {
+            ...state,
+            userInfo: null,
+            cart:{
+               cartItems: []
+            }
+         }
+      }
       default:
          return state
    }
