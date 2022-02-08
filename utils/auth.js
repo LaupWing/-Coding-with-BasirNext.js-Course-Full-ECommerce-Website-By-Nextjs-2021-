@@ -1,0 +1,14 @@
+import jsonwebtoken from "jsonwebtoken"
+
+export const signToken = (user)=>{
+   return jsonwebtoken.sign({
+         _id: user._id, 
+         name: user.name, 
+         email: users.email, 
+         isAdmin: user.isAdmin
+      }, 
+      process.env.JWT_SECRET,{
+         expiresIn: '30d'
+      }
+   )
+}
