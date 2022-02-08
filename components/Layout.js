@@ -1,4 +1,4 @@
-import { AppBar, Container, Toolbar, Typography, Link, createTheme, ThemeProvider, CssBaseline, Switch, Badge } from '@material-ui/core';
+import { AppBar, Container, Toolbar, Typography, Link, createTheme, ThemeProvider, CssBaseline, Switch, Badge, Button } from '@material-ui/core';
 import Cookies from 'js-cookie';
 import Head from 'next/head';
 import NextLink from 'next/link';
@@ -8,7 +8,7 @@ import useStyles from '../utils/styles';
 
 const Layout = ({children, title, description}) => {
    const {state, dispatch} = useContext(Store)
-   const {darkMode, cart} = state
+   const {darkMode, cart, userInfo} = state
    const classes = useStyles()
    const theme = createTheme({
       typography:{
@@ -74,9 +74,9 @@ const Layout = ({children, title, description}) => {
                            
                         </Link>
                      </NextLink>
-                     <NextLink href={'/login'} passHref>
+                     {userInfo ? <Button className={classes.navbarButton}>{userInfo.name}</Button> :  <NextLink href={'/login'} passHref>
                         <Link>Login</Link>
-                     </NextLink>
+                     </NextLink>}
                   </div>
                </Toolbar>
             </AppBar>
