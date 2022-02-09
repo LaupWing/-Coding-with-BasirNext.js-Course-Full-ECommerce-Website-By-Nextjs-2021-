@@ -6,11 +6,13 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useContext } from "react";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import Layout from "../components/Layout";
 import { Store } from "../utils/Store";
 import useStyles from "../utils/styles";
 
 export default function Register() {
+   const {handleSubmit, control, formState: {errors}} = useForm()
    const router = useRouter()
    const {redirect} = router.query
    const classes = useStyles()
@@ -55,16 +57,31 @@ export default function Register() {
          </Typography>
          <List>
             <ListItem>
-               <TextField 
-                  variant="outlined" 
-                  fullWidth 
-                  id="name" 
-                  label="Name" 
-                  inputProps={{type: 'text'}}
-                  onChange={e=>setName(e.target.value)}
-                  >
-                  
-               </TextField>
+               <Controller
+                  name="name"
+                  control={control}
+                  defaultValue=""
+                  rules={{
+                     required: true,
+                     minLength: 2
+                  }}
+                  render={({field})=>(
+                     <TextField 
+                        variant="outlined" 
+                        fullWidth 
+                        id="name" 
+                        label="Name" 
+                        inputProps={{type: 'text'}}
+                        error={Boolean(errors.name)}
+                        helperText={errors.name ? errors.email.type === 'minLength' ? 'Name is to short' : 'Name is required' : ''}
+                        {...field}
+                     >
+                        
+                     </TextField>
+                  )}
+               >
+
+               </Controller>
             </ListItem>
             <ListItem>
                <TextField 

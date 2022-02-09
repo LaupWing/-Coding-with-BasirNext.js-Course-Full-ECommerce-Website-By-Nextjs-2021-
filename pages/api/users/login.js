@@ -21,7 +21,7 @@ handler.post(async (req, res)=> {
       })
    }else{
       res.status(401).send({
-         message: 'Invald user or password'
+         message: 'Invald email or password'
       })
    }
 })
