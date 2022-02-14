@@ -2,6 +2,7 @@ import { Step, StepLabel, Stepper } from '@material-ui/core'
 import React from 'react'
 
 const CheckoutWizard = ({activeStep=0}) => {
+   const classes = useStyles
    return (
       <Stepper activeStep={activeStep} alternativeLabel>
          {['Login', 'Shipping Address', 'Payment Method', 'Place Order'].map(step=>(
