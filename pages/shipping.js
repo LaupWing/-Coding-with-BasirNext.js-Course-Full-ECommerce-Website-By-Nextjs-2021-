@@ -4,10 +4,8 @@ import {
    Typography,
    TextField,
    Button,
-   Link,
 } from '@material-ui/core';
 import { useRouter } from 'next/router';
-import NextLink from 'next/link';
 import React, { useContext, useEffect } from 'react';
 import Layout from '../components/Layout';
 import { Store } from '../utils/Store';
@@ -24,7 +22,6 @@ export default function Shipping() {
       setValue
    } = useForm();
    const router = useRouter();
-   const { redirect } = router.query;
    const { state, dispatch } = useContext(Store);
    const { userInfo, cart:{shippingAddress} } = state;
    useEffect(() => {
